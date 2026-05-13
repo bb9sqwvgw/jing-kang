@@ -3,7 +3,28 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="静康享宁家政 — 北京专业家政服务公司，提供家庭保洁、月嫂、做饭阿姨、老人陪护、新房开荒等服务。持证上岗，100+家庭信赖。" />
+    <meta property="og:title" content="静康享宁家政服务" />
+    <meta property="og:description" content="专业家政 · 用心服务 · 洁净万家" />
+    <meta property="og:image" content="images/og-image.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "静康享宁家政服务",
+      "telephone": "13582241674",
+      "address": { "@type": "PostalAddress", "addressRegion": "北京" },
+      "openingHours": "Mo-Su 08:00-20:00",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "100" }
+    }
+    </script>
     <title>静康享宁家政服务 — 用心服务·洁净万家</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -17,6 +38,8 @@
             <nav class="nav-links" id="navLinks">
                 <a href="#hero">首页</a>
                 <a href="#services">服务项目</a>
+                <a href="#trust">为什么选我们</a>
+                <a href="#process">服务流程</a>
                 <a href="#about">关于我们</a>
                 <a href="#wechat">公众号</a>
                 <a href="#contact">联系我们</a>
@@ -31,7 +54,7 @@
         <div class="container hero-content">
             <h1>静康享宁家政服务</h1>
             <p>专业家政 · 用心服务 · 洁净万家</p>
-            <a href="tel:13582241674" class="btn btn-primary">📞 立即预约</a>
+            <a href="#services" class="btn btn-primary">查看服务</a>
         </div>
     </section>
 
@@ -41,35 +64,98 @@
             <h2 class="section-title">服务项目</h2>
             <p class="section-sub">专业团队，为您提供全方位的家政服务</p>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" onclick="selectService('家庭保洁')">
                     <div class="icon">🧹</div>
                     <h3>家庭保洁</h3>
                     <p>日常保洁、深度清洁、擦窗服务，让家焕然一新</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="selectService('月嫂服务')">
                     <div class="icon">👶</div>
                     <h3>月嫂服务</h3>
                     <p>专业月嫂，为新妈妈和宝宝提供贴心照护</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="selectService('做饭阿姨')">
                     <div class="icon">🍳</div>
                     <h3>做饭阿姨</h3>
                     <p>健康营养的家常菜、老人餐、儿童餐定制</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="selectService('老人陪护')">
                     <div class="icon">👴</div>
                     <h3>老人陪护</h3>
                     <p>居家养老陪护，给家人多一份安心</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="selectService('新房开荒')">
                     <div class="icon">🏠</div>
                     <h3>新房开荒</h3>
                     <p>新房装修后全面清洁，省心入住</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="selectService('衣物洗护')">
                     <div class="icon">🧺</div>
                     <h3>衣物洗护</h3>
                     <p>衣物分类洗涤、熨烫收纳一站式服务</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 为什么选择我们 -->
+    <section class="trust" id="trust">
+        <div class="container">
+            <h2 class="section-title">为什么选择我们</h2>
+            <p class="section-sub">用心服务每一个家庭，用专业赢得信任</p>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-icon">✅</div>
+                    <h3>持证上岗</h3>
+                    <p>所有服务人员经过严格背景调查和专业培训，持证上岗</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🛡️</div>
+                    <h3>保险保障</h3>
+                    <p>服务全程投保，财产损失有保障，让您无后顾之忧</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">💰</div>
+                    <h3>明码标价</h3>
+                    <p>价格透明，无隐形消费，不满意可协商处理</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🤝</div>
+                    <h3>售后无忧</h3>
+                    <p>服务后48小时内不满意免费返工，直到您满意为止</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务流程 -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title">服务流程</h2>
+            <p class="section-sub">简单四步，轻松享受专业家政服务</p>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h3>在线预约</h3>
+                    <p>填写信息或直接电话沟通需求</p>
+                    <div class="step-arrow">→</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h3>确认方案</h3>
+                    <p>客服确认服务内容、时间和价格</p>
+                    <div class="step-arrow">→</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h3>上门服务</h3>
+                    <p>专业服务人员按时上门提供服务</p>
+                    <div class="step-arrow">→</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h3>售后回访</h3>
+                    <p>服务完成后回访，确保满意</p>
                 </div>
             </div>
         </div>
@@ -110,8 +196,7 @@
             <div class="wechat-content">
                 <div class="wechat-qr">
                     <div class="qr-placeholder">
-                        <div class="qr-icon">💬</div>
-                        <p class="qr-tip">请将您的公众号二维码<br />替换此区域</p>
+                        <img src="images/qrcode.jpg" alt="静康享宁家政公众号二维码" class="qr-img" />
                     </div>
                     <p class="wechat-name">静康享宁家政</p>
                 </div>
@@ -123,7 +208,7 @@
                         <li>✅ 家政小知识定期推送</li>
                         <li>✅ 在线客服，随时咨询</li>
                     </ul>
-                    <a href="tel:13582241674" class="btn btn-primary">📞 电话咨询</a>
+
                 </div>
             </div>
         </div>
@@ -166,9 +251,9 @@
                     </div>
                 </div>
                 <form class="contact-form" id="contactForm">
-                    <input type="text" placeholder="您的姓名" required />
-                    <input type="tel" placeholder="手机号码" required />
-                    <select required>
+                    <input type="text" name="name" placeholder="您的姓名" required />
+                    <input type="tel" name="phone" placeholder="手机号码" pattern="[0-9]{11}" title="请输入11位手机号码" required />
+                    <select name="service" required>
                         <option value="">请选择服务类型</option>
                         <option>家庭保洁</option>
                         <option>月嫂服务</option>
@@ -177,7 +262,7 @@
                         <option>新房开荒</option>
                         <option>其他</option>
                     </select>
-                    <textarea rows="4" placeholder="服务需求描述（选填）"></textarea>
+                    <textarea name="desc" rows="4" placeholder="服务需求描述（选填）"></textarea>
                     <button type="submit" class="btn btn-primary">提交预约</button>
                 </form>
             </div>
@@ -193,5 +278,10 @@
     </footer>
 
     <script src="js/main.js"></script>
+<!-- 浮动客服 -->
+<a href="tel:13582241674" class="float-phone">
+    <span class="float-icon">📞</span>
+    <span class="float-text">电话咨询</span>
+</a>
 </body>
 </html>
