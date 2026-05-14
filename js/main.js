@@ -3,14 +3,27 @@ const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
 
 hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
 });
 
 // 点击导航链接后关闭菜单
 navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
     });
+});
+
+// ESC 关闭菜单
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+    }
 });
 
 
@@ -40,15 +53,13 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// 滚动时导航栏加阴影（节流）
+// 滚动时导航栏加深（节流）
 let ticking = false;
 window.addEventListener('scroll', () => {
     if (!ticking) {
         requestAnimationFrame(() => {
             const navbar = document.querySelector('.navbar');
-            navbar.style.boxShadow = window.scrollY > 50
-                ? '0 2px 20px rgba(0,0,0,.1)'
-                : '0 1px 10px rgba(0,0,0,.06)';
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
             ticking = false;
         });
         ticking = true;
@@ -57,17 +68,20 @@ window.addEventListener('scroll', () => {
 
 
 // 表单实时校验
-document.querySelector('input[name="phone"]').addEventListener('input', function() {
+const phoneInput = document.querySelector('input[name="phone"]');
+if (phoneInput) {
+phoneInput.addEventListener('input', function() {
     const val = this.value.replace(/\D/g, '');
     this.value = val;
     if (val.length === 11) {
-        this.style.borderColor = 'var(--primary)';
+        this.style.borderColor = '#2d6a4f';
     } else if (val.length > 0) {
         this.style.borderColor = '#ef4444';
     } else {
         this.style.borderColor = '#e0e0e0';
     }
 });
+}
 
 // 表单提交
 const form = document.getElementById('contactForm');
@@ -88,6 +102,9 @@ form.addEventListener('submit', function (e) {
         return;
     }
 
+    const btn = this.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = '提交中...';
     showToast('正在提交...');
 
     const params = new URLSearchParams();
@@ -96,10 +113,13 @@ form.addEventListener('submit', function (e) {
     params.append('service', service);
     params.append('desc', desc);
 
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
     fetch('/api/submit', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: params.toString()
+        body: params.toString(),
+        signal: controller.signal
     })
     .then(r => r.json())
     .then(data => {
@@ -111,7 +131,7 @@ form.addEventListener('submit', function (e) {
         document.getElementById('contactForm').reset();
     })
     .catch(() => {
-        showToast('提交成功，感谢您的预约！', true);
+        showToast('网络异常，请拨打 13582241674 电话预约');
         document.getElementById('contactForm').reset();
     });
 });
